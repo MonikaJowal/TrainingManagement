@@ -43,9 +43,9 @@ public class UserController {
 		return new ResponseEntity<User>(registeredUser, HttpStatus.CREATED);
 	}
 
-	@PostMapping("/login")
-	public ResponseEntity<?> loginUser(@RequestBody User user) {
-		Status login = userService.loginUser(user);
+	@PostMapping("/authentication")
+	public ResponseEntity<?> authenticateUser(@RequestBody User user) {
+		Status login = userService.authenticateUser(user);
 		return new ResponseEntity<Status>(login,HttpStatus.OK);
 	}
 
@@ -65,6 +65,11 @@ public class UserController {
 	public ResponseEntity<?> updateProfile(@RequestBody User user) {
 		Status profileUpdate = userService.updateProfile(user);
 		return new ResponseEntity<Status>(profileUpdate, HttpStatus.OK);	
+	}
+	
+	@GetMapping("/all")
+	public Iterable<User> getAllUsers(){
+		return userService.findAllUser();
 	}
 	
 }
