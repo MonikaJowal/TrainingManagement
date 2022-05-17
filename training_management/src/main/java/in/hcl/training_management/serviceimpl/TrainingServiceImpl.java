@@ -17,10 +17,10 @@ public class TrainingServiceImpl implements TrainingService {
 	public Training saveOrUpdate(Training training) {
 		
 	        try {
-	            training.setCoursename(training.getCoursename().toUpperCase());
+	            training.setBatchno(training.getBatchno().toUpperCase());
 	        return trainingRepository.save  (training);
 	    }catch(Exception ex) {
-	        throw new TrainingIdException("Training Id:" +training.getCoursename().toUpperCase()+"already exists");
+	        throw new TrainingIdException("Training Id:" +training.getBatchno().toUpperCase()+"already exists");
 	    }
 	         
 	}

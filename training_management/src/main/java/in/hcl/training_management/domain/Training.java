@@ -65,10 +65,7 @@ public class Training {
 	public void setTrainername(String trainername) {
 		this.trainername = trainername;
 	}
-	public Training() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -98,6 +95,9 @@ public class Training {
 	}
 	public void setCoursename(String coursename) {
 		Coursename = coursename;
+	}
+	public Training() {
+		super();
 	}
 
 
