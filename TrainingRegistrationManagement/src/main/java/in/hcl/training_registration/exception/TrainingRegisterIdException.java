@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.BAD_REQUEST)
-public class EmployeeIdException extends RuntimeException {
+public class TrainingRegisterIdException extends RuntimeException {
 
 	/**
 	 * 
@@ -12,12 +12,12 @@ public class EmployeeIdException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 
 
-	public EmployeeIdException() {
+	public TrainingRegisterIdException() {
 		super();
 	}
 	
 
-	public EmployeeIdException(String errMsg) {
+	public TrainingRegisterIdException(String errMsg) {
 		super(errMsg);
 	}
 	

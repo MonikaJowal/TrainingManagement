@@ -1,10 +1,10 @@
 package in.hcl.training_registration.exception;
 
-public class EmployeeIdExceptionResponse {
+public class TrainingRegisterIdExceptionResponse {
 	
 	private String employeeId;
 
-	public EmployeeIdExceptionResponse(String employeeId) {
+	public TrainingRegisterIdExceptionResponse(String employeeId) {
 		super();
 		this.employeeId = employeeId;
 	}
