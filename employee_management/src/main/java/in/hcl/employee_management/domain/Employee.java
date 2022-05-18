@@ -13,7 +13,7 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String employeeName;
-	private Long ssn;
+	private Long socialSecurityNo;
 	private String employeeDesignation;
 	private String employeeDepartment;
 	private String employeePhone;
@@ -24,19 +24,17 @@ public class Employee {
 		// TODO Auto-generated constructor stub
 	}
 
-
-	public Employee(Long id, String employeeName, Long ssn, String employeeDesignation, String employeeDepartment,
-			String employeePhone, String employeeMail) {
+	public Employee(Long id, String employeeName, Long socialSecurityNo, String employeeDesignation,
+			String employeeDepartment, String employeePhone, String employeeMail) {
 		super();
 		this.id = id;
 		this.employeeName = employeeName;
-		this.ssn = ssn;
+		this.socialSecurityNo = socialSecurityNo;
 		this.employeeDesignation = employeeDesignation;
 		this.employeeDepartment = employeeDepartment;
 		this.employeePhone = employeePhone;
 		this.employeeMail = employeeMail;
 	}
-
 
 	public Long getId() {
 		return id;
@@ -57,16 +55,13 @@ public class Employee {
 		this.employeeName = employeeName;
 	}
 
-
-	public Long getSsn() {
-		return ssn;
+	public Long getSocialSecurityNo() {
+		return socialSecurityNo;
 	}
 
-
-	public void setSsn(Long ssn) {
-		this.ssn = ssn;
+	public void setSocialSecurityNo(Long socialSecurityNo) {
+		this.socialSecurityNo = socialSecurityNo;
 	}
-
 
 	public String getEmployeeDesignation() {
 		return employeeDesignation;
@@ -78,12 +73,12 @@ public class Employee {
 	}
 
 
-	public String getEmployeeDepartment() {
+	public String getemployeeDepartment() {
 		return employeeDepartment;
 	}
 
 
-	public void setEmployeeDepartment(String employeeDepartment) {
+	public void setemployeeDepartment(String employeeDepartment) {
 		this.employeeDepartment = employeeDepartment;
 	}
 

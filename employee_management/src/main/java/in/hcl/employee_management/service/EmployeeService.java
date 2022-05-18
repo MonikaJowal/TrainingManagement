@@ -9,8 +9,8 @@ import in.hcl.employee_management.domain.Employee;
 @Service
 public interface EmployeeService {
 	public Employee createEmployee (Employee employee);
-	public Employee getEmployeeBySsn(Long ssn);
-	public void deleteEmployeeBySsn(Long ssn);
+	public Employee getEmployeeBySocialSecurityNo(Long socialSecurityNo);
+	public void deleteEmployeeBySocialSecurityNo(Long socialSecurityNo);
 	public List<Employee> getAllEmployee();
 	public Employee updateEmployee(Employee employee);
 	

@@ -13,7 +13,7 @@
 	<artifactId>employee_management</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>employee_management</name>
-	<description>This is employee  related microservice</description>
+	<description>This is employee related microservice</description>
 	<properties>
 		<java.version>8</java.version>
 		<spring-cloud.version>2021.0.2</spring-cloud.version>

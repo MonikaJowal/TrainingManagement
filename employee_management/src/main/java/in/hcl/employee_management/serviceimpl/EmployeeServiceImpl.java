@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import in.hcl.employee_management.domain.Employee;
@@ -26,20 +25,20 @@ public class EmployeeServiceImpl implements EmployeeService  {
 	}
 
 	@Override
-	public Employee getEmployeeBySsn(Long ssn) {
-		Optional<Employee> employee = employeeRepository.findBySsn(ssn);
+	public Employee getEmployeeBySocialSecurityNo(Long socialSecurityNo) {
+		Optional<Employee> employee = employeeRepository.findBySocialSecurityNo(socialSecurityNo);
 		if(employee.isPresent()) {
 			return employee.get();
 		}else {
-			throw new EmployeeNotFoundException("Employee not found with id :" +ssn);
+			throw new EmployeeNotFoundException("Employee not found with id :" +socialSecurityNo);
 		}
 	}
 
 	@Override
-	public void deleteEmployeeBySsn(Long ssn) {
-		Employee employeedb = employeeRepository.findBySsn(ssn).get();
+	public void deleteEmployeeBySocialSecurityNo(Long socialSecurityNo) {
+		Employee empdb = employeeRepository.findBySocialSecurityNo(socialSecurityNo).get();
 		 
-			employeeRepository.delete(employeedb);
+			employeeRepository.delete(empdb);
 	}
 
 	@Override
@@ -49,20 +48,20 @@ public class EmployeeServiceImpl implements EmployeeService  {
 
 	@Override
 	public Employee updateEmployee(Employee employee) {
-		Optional<Employee> employee2 = employeeRepository.findBySsn(employee.getSsn());
+		Optional<Employee> employee2 = employeeRepository.findById(employee.getId());
 		if (employee2.isPresent()) {
 			Employee updateEmployee = employee2.get();
 			updateEmployee.setId(employee.getId());
-			updateEmployee.setSsn(employee.getSsn());
+			updateEmployee.setSocialSecurityNo(employee.getSocialSecurityNo());
 			updateEmployee.setEmployeeName(employee.getEmployeeName());
 			updateEmployee.setEmployeeDesignation(employee.getEmployeeDesignation());
-			updateEmployee.setEmployeeDepartment(employee.getEmployeeDepartment());
+			updateEmployee.setemployeeDepartment(employee.getemployeeDepartment());
 			updateEmployee.setEmployeePhone(employee.getEmployeePhone());
 			updateEmployee.setEmployeeMail(employee.getEmployeeMail());
 			return employeeRepository.save(updateEmployee);
 			
 		} else {
-			throw new EmployeeNotFoundException("Employee not found with id : " + employee.getSsn());
+			throw new EmployeeNotFoundException("Employee not found with id : " + employee.getSocialSecurityNo());
 		}
 		
 	}

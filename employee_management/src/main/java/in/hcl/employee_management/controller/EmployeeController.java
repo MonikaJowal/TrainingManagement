@@ -22,7 +22,7 @@ import in.hcl.employee_management.service.EmployeeService;
 import in.hcl.employee_management.serviceimpl.MapValidationErrorService;
 
 @RestController
-@RequestMapping("/employees")
+@RequestMapping("/employee")
 public class EmployeeController {
 
 	@Autowired
@@ -42,14 +42,14 @@ public class EmployeeController {
 		
 	}
 	
-	@GetMapping("/{ssn}")
-	public Employee getEmployeeBySsn(@PathVariable("ssn") Long ssn) {
-		return employeeService.getEmployeeBySsn(ssn);
+	@GetMapping("/getEmployee/{socialSecurityNo}")
+	public Employee getEmployeeBySocialSecurityNo(@PathVariable Long socialSecurityNo) {
+		return employeeService.getEmployeeBySocialSecurityNo(socialSecurityNo);
 	}
 	
 	
 	@PutMapping("/updateEmployee")
-	public Employee geyUpdatedEmployee(@RequestBody Employee employee) {
+	public Employee UpdateEmployee(@RequestBody Employee employee) {
 		return employeeService.updateEmployee(employee);
 	}
 	
@@ -58,12 +58,11 @@ public class EmployeeController {
 		return employeeService.getAllEmployee();
 	}
 	
-	@DeleteMapping("/{ssn}")
-	public void deleteEmployeeBySsn(@PathVariable Long ssn) {
-		employeeService.deleteEmployeeBySsn(ssn);
+	@DeleteMapping("/delete/{socialSecurityNo}")
+	public void deleteEmployeeBySocialSecurityNo(@PathVariable Long socialSecurityNo) {
+		employeeService.deleteEmployeeBySocialSecurityNo(socialSecurityNo);
 	}
 	
-
 }
 	
 	
