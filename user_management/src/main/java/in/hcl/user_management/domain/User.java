@@ -17,15 +17,15 @@ public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	//@NotBlank(message = "UserName is required")
+	@NotBlank(message = "UserName is required")
 	private String username;
-	//@NotBlank(message = "Address is required")
+	@NotBlank(message = "Address is required")
 	private String address;
-	//@NotBlank(message = "Mobile no. is required")
-	//@Size(min=10,max=10, message = "Please enter 10 digit number")
+	@NotBlank(message = "Mobile no. is required")
+	@Size(min=10,max=10, message = "Please enter 10 digit number")
 	private String mobileNo; 
-	//@NotBlank(message = "Password is required")
-	//@Size(min=6,max=10, message = "Please use minimum 8 charactes")
+	@NotBlank(message = "Password is required")
+	@Size(min=6,max=10, message = "Please use minimum 8 charactes")
 	private String password;
 
 	private Date createdAt;

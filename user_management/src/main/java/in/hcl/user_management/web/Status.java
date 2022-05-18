@@ -1,7 +1,7 @@
 package in.hcl.user_management.web;
 
 public enum Status {
-	LOGIN_SUCCESS,
+	AUTHENTICATION_SUCCESS,
 	LOGOUT_SUCCESS,
     USERNAME_AND_PASSWORD_NOT_CORRECT,
     USERNAME_NOT_CORRECT,

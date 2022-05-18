@@ -12,4 +12,5 @@ import in.hcl.user_management.domain.User;
 @Repository
 public interface UserRepository extends CrudRepository<User, Long>,JpaRepository<User, Long> {
 
+	
 }
