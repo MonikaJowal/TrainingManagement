@@ -39,11 +39,11 @@ public class CalendarController {
 	private RestTemplate restTemplate;
 
 	
-	@GetMapping("/findSchedule/{employeeId}")
-	public String fetchScheduleByEmployeeId(@PathVariable("employeeId") Long employeeId) {
-		Schedule schedule = restTemplate.exchange("http://localhost:9095/employees"+"/"+employeeId, HttpMethod.GET,null,Schedule.class).getBody();
+	@GetMapping("/findSchedule/calendarId/{calendarId}")
+	public String fetchScheduleByEmployeeId(@PathVariable("calendarId") Long calendarId) {
+		Schedule schedule = restTemplate.exchange("http://localhost:9095/employees"+"/"+calendarId, HttpMethod.GET,null,Schedule.class).getBody();
 		System.out.println(schedule);
-		return restTemplate.exchange("http://localhost:9095/employees"+"/"+employeeId, HttpMethod.GET,null,String.class).getBody();
+		return restTemplate.exchange("http://localhost:9095/employees"+"/"+calendarId, HttpMethod.GET,null,String.class).getBody();
 	}
 	
 	@GetMapping("/findAllSchedule")
@@ -71,7 +71,7 @@ public class CalendarController {
 	
 	@PatchMapping("/updateCalendar/{calendarId}")
 	public Calendar getCalendarById(@RequestBody Calendar calendar, @PathVariable("calendarId") Long calandarId) {
-		return calendarService.updateCalendar(calendar, calandarId);
+		return calendarService.updateCalendar(calendar);
 	}
 	
 	@GetMapping("/getAll")

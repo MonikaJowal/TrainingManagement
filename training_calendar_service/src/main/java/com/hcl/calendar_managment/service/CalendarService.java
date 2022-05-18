@@ -10,5 +10,5 @@ public interface CalendarService {
 	public Calendar getCalendarById(Long calendarid);
 	public void deleteCalendarById(Long calendarid);
 	public List<Calendar> getAllCalendar();
-	public Calendar updateCalendar(Calendar calendar, Long id);
+	public Calendar updateCalendar(Calendar calendar);
 }
