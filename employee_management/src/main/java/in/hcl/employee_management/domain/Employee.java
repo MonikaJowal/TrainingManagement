@@ -1,28 +1,38 @@
 package in.hcl.employee_management.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-
+@Entity
 public class Employee {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String employeeName;
+	private Long ssn;
 	private String employeeDesignation;
-	private String employeeDepartement;
+	private String employeeDepartment;
 	private String employeePhone;
 	private String employeeMail;
 	
-	
-	public Employee(Long id, String employeeName, String employeeDesignation, String employeeDepartement,
+	public Employee() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public Employee(Long id, String employeeName, Long ssn, String employeeDesignation, String employeeDepartment,
 			String employeePhone, String employeeMail) {
 		super();
 		this.id = id;
 		this.employeeName = employeeName;
+		this.ssn = ssn;
 		this.employeeDesignation = employeeDesignation;
-		this.employeeDepartement = employeeDepartement;
+		this.employeeDepartment = employeeDepartment;
 		this.employeePhone = employeePhone;
 		this.employeeMail = employeeMail;
 	}
@@ -48,6 +58,16 @@ public class Employee {
 	}
 
 
+	public Long getSsn() {
+		return ssn;
+	}
+
+
+	public void setSsn(Long ssn) {
+		this.ssn = ssn;
+	}
+
+
 	public String getEmployeeDesignation() {
 		return employeeDesignation;
 	}
@@ -58,13 +78,13 @@ public class Employee {
 	}
 
 
-	public String getEmployeeDepartement() {
-		return employeeDepartement;
+	public String getEmployeeDepartment() {
+		return employeeDepartment;
 	}
 
 
-	public void setEmployeeDepartement(String employeeDepartement) {
-		this.employeeDepartement = employeeDepartement;
+	public void setEmployeeDepartment(String employeeDepartment) {
+		this.employeeDepartment = employeeDepartment;
 	}
 
 
