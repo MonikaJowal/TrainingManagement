@@ -1,5 +1,6 @@
 package in.hcl.user_management.serviceImpl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -33,11 +34,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Status loginUser(User u) {
+	public Status authenticateUser(User u) {
 		List<User> users = userRepository.findAll();
 		for (User user : users) {
 			if ((user.getUsername()).equals(u.getUsername()) && (user.getPassword()).equals(u.getPassword())) {
-				return Status.LOGIN_SUCCESS;
+				return Status.AUTHENTICATION_SUCCESS;
 			}
 			else if(((user.getUsername())!=(u.getUsername()) && (user.getPassword()).equals(u.getPassword()))) {
 				return Status.USERNAME_NOT_CORRECT;
@@ -81,6 +82,13 @@ public class UserServiceImpl implements UserService {
 		jdbcTemplate.setDataSource(dataSource);
 		//System.out.println("Profile updated successfully");
 		jdbcTemplate.update(sql);
+		Date date = new Date();
+		u.setUpdateAt(date);
 		return Status.PROFILE_UPDATED_SUCCESSFULLY;
+	}
+
+	@Override
+	public Iterable<User> findAllUser() {
+		return userRepository.findAll();
 	}
 }
