@@ -36,14 +36,14 @@ public class TrainingRegistrationController {
 		return new ResponseEntity<TrainingRegistration>(register,HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/nominatedemployees")
+	@GetMapping("/registeredemployees")
 	public Iterable<TrainingRegistration> getAllNominatedEmployees(){
 		return trainingRegistrationService.findAllTrainingRegistration();
 	}	
 
-	@GetMapping("/javafullstack/Batch1")
-	public ResponseEntity<?> getAllFullStackNominatedEmployees(String nominatedFor, String allottedBatch){
-		List<TrainingRegistration> emps = trainingRegistrationService.findEmployeeByNominatedForFullStack("javafullstack","Batch1");
+	@GetMapping("/{nominatedFor}/{allottedBatch}")
+	public ResponseEntity<?> getAllFullStackNominatedEmployees(@PathVariable String nominatedFor, @PathVariable String allottedBatch){
+		List<TrainingRegistration> emps = trainingRegistrationService.findEmployeeByNominatedForFullStack(nominatedFor,allottedBatch);
 		return new ResponseEntity<List<TrainingRegistration>>(emps,HttpStatus.OK);
 	}
 	
