@@ -21,7 +21,7 @@ import in.hcl.schedule_management.domain.Schedule;
 import in.hcl.schedule_management.service.ScheduleService;
 
 @RestController
-@RequestMapping("/employees")
+@RequestMapping("/schedule")
 public class ScheduleController {
 
 	@Autowired
@@ -30,7 +30,7 @@ public class ScheduleController {
 	@Autowired
 	private in.hcl.schedule_management.serviceimpl.MapValidationErrorService mapValidationErrorService;
 
-	@PostMapping("/create")
+	@PostMapping("/createSchedule")
 	public ResponseEntity<?> createNewSchedule(@Valid @RequestBody Schedule schedule, BindingResult result) {
 		ResponseEntity<?> errorMap = mapValidationErrorService.mapValidationError(result);
 		if (errorMap != null)
@@ -39,9 +39,9 @@ public class ScheduleController {
 		return new ResponseEntity<Schedule>(schel, HttpStatus.CREATED);
 	}
 
-	@GetMapping("/{employeeId}")
-	public Schedule getScheduleById(@PathVariable("employeeId") Long employeeId) {
-		return scheduleService.getScheduleById(employeeId);
+	@GetMapping("/getSchedule/{scheduleId}")
+	public Schedule getScheduleById(@PathVariable("scheduleId") Long scheduleId) {
+		return scheduleService.getScheduleById(scheduleId);
 	}
 
 	@PutMapping("/updateSchedule")
@@ -49,14 +49,14 @@ public class ScheduleController {
 		return scheduleService.updateSchedule(schedule);
 	}
 
-	@GetMapping("/getAll")
+	@GetMapping("/getAllSchedule")
 	public List<Schedule> getScheduleList() {
 		return scheduleService.getAllSchedule();
 	}
 
-	@DeleteMapping("{employeeId}")
-	public void deleteScheduleById(@PathVariable("employeeId") Long employeeId) {
-		scheduleService.deleteScheduleById(employeeId);
+	@DeleteMapping("/delete/{scheduleId}")
+	public void deleteScheduleById(@PathVariable("scheduleId") Long scheduleId) {
+		scheduleService.deleteScheduleById(scheduleId);
 	}
 }
 

@@ -23,23 +23,23 @@ public class ScheduleServiceImpl implements ScheduleService {
 	}
 
 	@Override
-	public Schedule getScheduleById(Long employeeId) {
-		Optional<Schedule> schedule = scheduleRepository.findById(employeeId);
+	public Schedule getScheduleById(Long scheduleId) {
+		Optional<Schedule> schedule = scheduleRepository.findById(scheduleId);
 		if(schedule.isPresent()) {
 			return schedule.get();
 		}else {
-			throw new ScheduleNotFoundException("Schedule not found with id : " + employeeId);
+			throw new ScheduleNotFoundException("Schedule not found with id : " + scheduleId);
 		}
 			
 	}
 
 	@Override
-	public void deleteScheduleById(Long employeeId) {
-		Optional<Schedule> schedule = scheduleRepository.findById(employeeId);
+	public void deleteScheduleById(Long scheduleId) {
+		Optional<Schedule> schedule = scheduleRepository.findById(scheduleId);
 		if(schedule.isPresent()) {
 			scheduleRepository.delete(schedule.get());
 		}else {
-			throw new ScheduleNotFoundException("Schedule not found with id : " + employeeId);
+			throw new ScheduleNotFoundException("Schedule not found with id : " + scheduleId);
 		}
 		
 		
@@ -52,17 +52,18 @@ public class ScheduleServiceImpl implements ScheduleService {
 
 	@Override
 	public Schedule updateSchedule(Schedule schedule) {
-		Optional<Schedule> schedule2 = scheduleRepository.findById(schedule.getEmployeeId());
+		Optional<Schedule> schedule2 = scheduleRepository.findById(schedule.getScheduleId());
 		if(schedule2.isPresent()) {
 			Schedule updatedSchedule = schedule2.get();
-			updatedSchedule.setEmployeeId(schedule.getEmployeeId());
-			updatedSchedule.setEmployeeName(schedule.getEmployeeName());
-			updatedSchedule.setProgrameName(schedule.getProgrameName());
+			updatedSchedule.setScheduleId(schedule.getScheduleId());
+			updatedSchedule.setTrainingId(schedule.getTrainingId());
+			updatedSchedule.setTrainingName(schedule.getTrainingName());
+			updatedSchedule.setTotalNumberOfDays(schedule.getTotalNumberOfDays());
 			updatedSchedule.setStartDate(schedule.getStartDate());
 			updatedSchedule.setEndDate(schedule.getEndDate());
 			return scheduleRepository.save(updatedSchedule);
 		}else {
-			throw new ScheduleNotFoundException("Schedule not found with id : " + schedule.getEmployeeId());
+			throw new ScheduleNotFoundException("Schedule not found with id : " + schedule.getScheduleId());
 		}
 		
 	}
