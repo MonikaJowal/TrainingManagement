@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
 			return Status.USER_CREATED_SUCCESSFULLY;
 		} 
 		catch (Exception e) {
-			throw new UserIdException("User ID "+u.getId()+" already exist");
+			throw new UserIdException("User ID "+u.getUserId()+" already exist");
 		}
 	}
 
@@ -86,7 +86,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Status updateProfile(User u) {
-		String sql = "update user set username = '"+u.getUsername()+"', address = '"+u.getAddress()+"', mobile_no = '"+u.getMobileNo()+"', password = '"+u.getPassword()+"' where id = '"+u.getId()+"'";
+		String sql = "update user set username = '"+u.getUsername()+"', address = '"+u.getAddress()+"', mobile_no = '"+u.getMobileNo()+"', password = '"+u.getPassword()+"' where userId = '"+u.getUserId()+"'";
 		jdbcTemplate.setDataSource(dataSource);
 		//System.out.println("Profile updated successfully");
 		jdbcTemplate.update(sql);

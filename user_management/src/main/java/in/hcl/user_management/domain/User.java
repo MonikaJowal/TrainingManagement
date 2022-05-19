@@ -16,7 +16,7 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	private Long userId;
 	@NotBlank(message = "UserName is required")
 	private String username;
 	@NotBlank(message = "Address is required")
@@ -40,12 +40,13 @@ public class User {
 		this.username = username;
 		this.password = password;
 	}
-
-	public Long getId() {
-		return id;
+	
+	public Long getUserId() {
+		return userId;
 	}
-	public void setId(Long id) {
-		this.id = id;
+
+	public void setUserId(Long userId) {
+		userId = userId;
 	}
 	public String getUsername() {
 		return username;
