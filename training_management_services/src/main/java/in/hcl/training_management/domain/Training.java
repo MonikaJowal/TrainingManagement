@@ -1,9 +1,14 @@
 package in.hcl.training_management.domain;
 
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class Training {
@@ -20,28 +25,75 @@ public class Training {
 	private String averagerating;
 	private Double budget;
 	private String batchNo;
+	private String duration;
+	private Date start_date;
+	private Date end_date;
+	private Long socialSecurityNo;
 	private String trainerName;
+	
+	
+
+	@Transient
+	private Employee employee ;
+	
+
+	
+	
 	public Training() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	public Training(String name, String contact, String email, String programeName, String trainingStatus,
-			String trainingtype, Integer noOfTraining, String averagerating, Double budget, String batchNo,
-			String trainerName) {
+
+	
+	
+	public Training(Long trainingId, Long socialSecurityNo, String trainerName) {
 		super();
-		this.name = name;
-		this.contact = contact;
-		this.email = email;
-		this.programeName = programeName;
-		this.trainingStatus = trainingStatus;
-		this.trainingtype = trainingtype;
-		this.noOfTraining = noOfTraining;
-		this.averagerating = averagerating;
-		this.budget = budget;
-		this.batchNo = batchNo;
+		this.trainingId = trainingId;
+		this.socialSecurityNo = socialSecurityNo;
 		this.trainerName = trainerName;
 	}
-	
+
+
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+
+
+	public Long getSocialSecurityNo() {
+		return socialSecurityNo;
+	}
+
+
+	public void setSocialSecurityNo(Long socialSecurityNo) {
+		this.socialSecurityNo = socialSecurityNo;
+	}
+
+
+	public String getDuration() {
+		return duration;
+	}
+	public void setDuration(String duration) {
+		this.duration = duration;
+	}
+	public Date getStart_date() {
+		return start_date;
+	}
+	public void setStart_date(Date start_date) {
+		this.start_date = start_date;
+	}
+	public Date getEnd_date() {
+		return end_date;
+	}
+	public void setEnd_date(Date end_date) {
+		this.end_date = end_date;
+	}
 	public Long getTrainingId() {
 		return trainingId;
 	}
