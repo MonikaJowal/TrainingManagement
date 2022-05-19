@@ -5,23 +5,25 @@ import java.util.Date;
 public class Schedule {
 
 	private String name;
-	private Long employeeId;
+	private Long scheduleId;
+	private Long calendarId;
 	private String programeName;
 	private Date startDate;
 	private Date endDate;
 	private Date createdAt;
 	private Date updatedAt;
-	
+
 	public Schedule() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Schedule(String name, Long employeeId, String programeName, Date startDate, Date endDate, Date createdAt,
-			Date updatedAt) {
+	public Schedule(String name, Long scheduleId, Long calendarId, String programeName, Date startDate, Date endDate,
+			Date createdAt, Date updatedAt) {
 		super();
 		this.name = name;
-		this.employeeId = employeeId;
+		this.scheduleId = scheduleId;
+		this.calendarId = calendarId;
 		this.programeName = programeName;
 		this.startDate = startDate;
 		this.endDate = endDate;
@@ -37,12 +39,20 @@ public class Schedule {
 		this.name = name;
 	}
 
-	public Long getEmployeeId() {
-		return employeeId;
+	public Long getScheduleId() {
+		return scheduleId;
 	}
 
-	public void setEmployeeId(Long employeeId) {
-		this.employeeId = employeeId;
+	public void setScheduleId(Long scheduleId) {
+		this.scheduleId = scheduleId;
+	}
+
+	public Long getCalendarId() {
+		return calendarId;
+	}
+
+	public void setCalendarId(Long calendarId) {
+		this.calendarId = calendarId;
 	}
 
 	public String getProgrameName() {
@@ -84,5 +94,5 @@ public class Schedule {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	
+
 }
