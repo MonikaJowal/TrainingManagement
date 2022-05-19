@@ -6,9 +6,22 @@ import in.hcl.schedule_management.domain.Schedule;
 
 public interface ScheduleService {
 	public Schedule createSchedule(Schedule schedule);
-    public Schedule getScheduleById(Long employeeid);
-    public void deleteScheduleById(Long employeeid);
-    public List<Schedule> getAllSchedule();
-    public Schedule updateSchedule(Schedule schedule, Long employeeid);
+	public Schedule getScheduleById(Long scheduleId);
+	public void deleteScheduleById(Long scheduleId);
+	public List<Schedule> getAllSchedule();
+	public Schedule updateSchedule(Schedule schedule);
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,32 +1,40 @@
 package in.hcl.employee_management.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-
+@Entity
 public class Employee {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String employeeName;
+	private Long socialSecurityNo;
 	private String employeeDesignation;
-	private String employeeDepartement;
+	private String employeeDepartment;
 	private String employeePhone;
 	private String employeeMail;
 	
-	
-	public Employee(Long id, String employeeName, String employeeDesignation, String employeeDepartement,
-			String employeePhone, String employeeMail) {
+	public Employee() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Employee(Long id, String employeeName, Long socialSecurityNo, String employeeDesignation,
+			String employeeDepartment, String employeePhone, String employeeMail) {
 		super();
 		this.id = id;
 		this.employeeName = employeeName;
+		this.socialSecurityNo = socialSecurityNo;
 		this.employeeDesignation = employeeDesignation;
-		this.employeeDepartement = employeeDepartement;
+		this.employeeDepartment = employeeDepartment;
 		this.employeePhone = employeePhone;
 		this.employeeMail = employeeMail;
 	}
-
 
 	public Long getId() {
 		return id;
@@ -47,6 +55,13 @@ public class Employee {
 		this.employeeName = employeeName;
 	}
 
+	public Long getSocialSecurityNo() {
+		return socialSecurityNo;
+	}
+
+	public void setSocialSecurityNo(Long socialSecurityNo) {
+		this.socialSecurityNo = socialSecurityNo;
+	}
 
 	public String getEmployeeDesignation() {
 		return employeeDesignation;
@@ -58,13 +73,13 @@ public class Employee {
 	}
 
 
-	public String getEmployeeDepartement() {
-		return employeeDepartement;
+	public String getemployeeDepartment() {
+		return employeeDepartment;
 	}
 
 
-	public void setEmployeeDepartement(String employeeDepartement) {
-		this.employeeDepartement = employeeDepartement;
+	public void setemployeeDepartment(String employeeDepartment) {
+		this.employeeDepartment = employeeDepartment;
 	}
 
 

@@ -6,73 +6,77 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Schedule {
-	@NotBlank(message="name id required")
-	private String name;
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@NotBlank(message="employeeId id required")
-	private Long employeeId;
-	@NotBlank(message="coursename id required")
-	private String courseName;
-	@JsonFormat(pattern="dd/mm/yyyy")
-	private Date startName;
-	@JsonFormat(pattern="dd/mm/yyyy")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long scheduleId;
+	private String trainingId;
+	private String trainingName;
+	private Integer totalNumberOfDays;
+	@JsonFormat(pattern = "yyyy-mm-dd")
+	private Date startDate;
+	@JsonFormat(pattern = "yyyy-mm-dd")
 	private Date endDate;
-	@JsonFormat(pattern="dd/mm/yyyy")
-	private Date createdAt;
-	@JsonFormat(pattern="dd/mm/yyyy")
-	private Date updatedAt;
-	
-	
-	public Schedule(String name, @NotBlank(message = "employeeId id required") Long employeeId,
-			@NotBlank(message = "coursename id required") String courseName, Date startName, Date endDate,
-			Date createdAt, Date updatedAt) {
+
+	public Schedule() {
 		super();
-		this.name = name;
-		this.employeeId = employeeId;
-		this.courseName = courseName;
-		this.startName = startName;
+		// TODO Auto-generated constructor stub
+	}
+
+	public Schedule(Long scheduleId, String trainingId, String trainingName, Integer totalNumberOfDays, Date startDate,
+			Date endDate) {
+		super();
+		this.scheduleId = scheduleId;
+		this.trainingId = trainingId;
+		this.trainingName = trainingName;
+		this.totalNumberOfDays = totalNumberOfDays;
+		this.startDate = startDate;
 		this.endDate = endDate;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
 	}
 
-	public String getName() {
-		return name;
+	public Long getScheduleId() {
+		return scheduleId;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setScheduleId(Long scheduleId) {
+		this.scheduleId = scheduleId;
 	}
 
-	public Long getEmployeeId() {
-		return employeeId;
+	public String getTrainingId() {
+		return trainingId;
 	}
 
-	public void setEmployeeId(Long employeeId) {
-		this.employeeId = employeeId;
+	public void setTrainingId(String trainingId) {
+		this.trainingId = trainingId;
 	}
 
-	public String getCourseName() {
-		return courseName;
+	public String getTrainingName() {
+		return trainingName;
 	}
 
-	public void setCourseName(String courseName) {
-		this.courseName = courseName;
+	public void setTrainingName(String trainingName) {
+		this.trainingName = trainingName;
 	}
 
-	public Date getStartName() {
-		return startName;
+	public Integer getTotalNumberOfDays() {
+		return totalNumberOfDays;
 	}
 
-	public void setStartName(Date startName) {
-		this.startName = startName;
+	public void setTotalNumberOfDays(Integer totalNumberOfDays) {
+		this.totalNumberOfDays = totalNumberOfDays;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
 
 	public Date getEndDate() {
@@ -82,21 +86,8 @@ public class Schedule {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
-	}
+	
 
 }
+
+	
