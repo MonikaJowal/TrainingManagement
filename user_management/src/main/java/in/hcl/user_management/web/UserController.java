@@ -1,9 +1,5 @@
 package in.hcl.user_management.web;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,15 +28,14 @@ public class UserController {
 	private UserService userService;
 	@Autowired
 	private MapValidationErrorService mapValidationErrorService;
-	@Autowired
-	private UserRepository userRepository;
+	
 
 	@PostMapping("/register")
 	public ResponseEntity<?> createNewUser(@Valid @RequestBody User user, BindingResult result) {
 		ResponseEntity<?> errorMap = mapValidationErrorService.mapValidationError(result);
 		if(errorMap!=null) return errorMap;
-		User registeredUser = userService.RegisterUser(user);
-		return new ResponseEntity<User>(registeredUser, HttpStatus.CREATED);
+		Status registeredUser = userService.RegisterUser(user);
+		return new ResponseEntity<Status>(registeredUser, HttpStatus.CREATED);
 	}
 
 	@PostMapping("/authentication")

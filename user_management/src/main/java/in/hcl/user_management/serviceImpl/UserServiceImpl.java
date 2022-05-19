@@ -25,11 +25,19 @@ public class UserServiceImpl implements UserService {
 	private JdbcTemplate jdbcTemplate = new JdbcTemplate();
 
 	@Override
-	public User RegisterUser(User user) {
+	public Status RegisterUser(User u) {
 		try {
-			return userRepository.save(user);
-		} catch (Exception e) {
-			throw new UserIdException("User ID "+user.getId()+" already exist");
+			List<User> users = userRepository.findAll();
+			for (User user : users) {
+				if(user.getUsername().equals(u.getUsername())) {
+					return Status.USERNAME_ALREADY_EXISTS;
+				}
+				userRepository.save(u);
+			}
+			return Status.USER_CREATED_SUCCESSFULLY;
+		} 
+		catch (Exception e) {
+			throw new UserIdException("User ID "+u.getId()+" already exist");
 		}
 	}
 
