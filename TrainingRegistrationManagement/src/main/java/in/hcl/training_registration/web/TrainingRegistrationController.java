@@ -26,14 +26,13 @@ import in.hcl.training_registration.serviceimpl.MapValidationErrorService;
 @RestController
 @RequestMapping("/trainingregistration")
 public class TrainingRegistrationController {
-
 	@Autowired
     private TrainingRegistrationService trainingRegistrationService;	
 	@Autowired
 	private MapValidationErrorService mapValidationErrorService;
 	@Autowired
 	private RestTemplate restTemplate;
-	@PostMapping("")
+	@PostMapping("/create")
 	public ResponseEntity<?>  nominateEmployee(@Valid @RequestBody TrainingRegistration trainingRegistration,BindingResult result) {
 		ResponseEntity<?> errorMap = mapValidationErrorService.mapValidationError(result);
 		if(errorMap!=null) return errorMap;
@@ -46,27 +45,26 @@ public class TrainingRegistrationController {
 		return trainingRegistrationService.findAllTrainingRegistration();
 	}	
 	
-	@DeleteMapping("/{trainingRegistrationId}")
-	public ResponseEntity<?> deleteRegistrationById(@PathVariable Long trainingRegistrationId){
-		trainingRegistrationService.deleteTrainingRegistrationById(trainingRegistrationId);
-		return new ResponseEntity<String>("Trining Registration with Id: "+trainingRegistrationId+" Deleted Succesfully!", HttpStatus.OK);
+	@DeleteMapping("/{registrationId}")
+	public ResponseEntity<?> deleteRegistrationById(@PathVariable Long registrationId){
+		trainingRegistrationService.deleteTrainingRegistrationById(registrationId);
+		return new ResponseEntity<String>("Trining Registration with Id: "+registrationId+" Deleted Succesfully!", HttpStatus.OK);
 	}
 	
-	@GetMapping("/{id}")
-	public ResponseEntity<?> getTrainingRegistrationById(@PathVariable Long id){
-		TrainingRegistration  trainingRegistration =  trainingRegistrationService.findTrainingRegistrationById(id).get();
-		List<Schedule> schedule = restTemplate.getForObject("http://schedule-service//api/schedules/all", List.class);
-		List<Employee> employee = restTemplate.getForObject("http://employee-service//api/employees/all", List.class);
-		//long scheduleId = restTemplate.getForObject("http://schedule-service//api/schedules/", long.class);
+	@GetMapping("/{registrationId}")
+	public ResponseEntity<?> getTrainingRegistrationById(@PathVariable Long registrationId){
+		TrainingRegistration  trainingRegistration =  trainingRegistrationService.findTrainingRegistrationById(registrationId).get();
+		Schedule schedule = restTemplate.getForObject("http://schedule-service/schedule/getSchedule/"+trainingRegistration.getScheduleId(), Schedule.class);
+		Employee employee = restTemplate.getForObject("http://employee-service/employee/getEmployee/"+trainingRegistration.getSocialSecurityNo(), Employee.class);
 		trainingRegistration.setSchedule(schedule);
-		trainingRegistration.setEmployees(employee);
+		trainingRegistration.setEmployee(employee);
+		
 		return new ResponseEntity<TrainingRegistration>(trainingRegistration, HttpStatus.OK);
 }
 	@GetMapping("/{nominatedFor}/{allottedBatch}")
-	public ResponseEntity<?> getAllFullStackNominatedEmployees(@PathVariable String nominatedFor,@PathVariable String allottedBatch){
+	public ResponseEntity<?> getEmployeesByNominatedCourse(@PathVariable String nominatedFor,@PathVariable String allottedBatch){
 		List<TrainingRegistration> emps = trainingRegistrationService.findEmployeeByNominatedForCourse(nominatedFor,allottedBatch);
 		return new ResponseEntity<List<TrainingRegistration>>(emps,HttpStatus.OK);
 	}
-	
-	
 }
+	

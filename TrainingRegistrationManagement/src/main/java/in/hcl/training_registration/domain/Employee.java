@@ -1,46 +1,56 @@
 package in.hcl.training_registration.domain;
 
-import java.util.Date;
 
 public class Employee {
 	private Long id;
-	private String name;
-	private String emailId;
-	private String gender;
-	private String contactNo;
-	private String designation;
-	private Date createdAt;
-	private Date updatedAt;
+	private String employeeName;
+	private Long socialSecurityNo;
+	private String employeeDesignation;
+	private String employeeDepartment;
+	private String employeePhone;
+	private String employeeMail;
+	
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getEmployeeName() {
+		return employeeName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
 	}
-	public String getEmailId() {
-		return emailId;
+	public Long getSocialSecurityNo() {
+		return socialSecurityNo;
 	}
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
+	public void setSocialSecurityNo(Long socialSecurityNo) {
+		this.socialSecurityNo = socialSecurityNo;
 	}
-	public String getGender() {
-		return gender;
+	public String getEmployeeDesignation() {
+		return employeeDesignation;
 	}
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setEmployeeDesignation(String employeeDesignation) {
+		this.employeeDesignation = employeeDesignation;
+	}
+	public String getEmployeeDepartment() {
+		return employeeDepartment;
+	}
+	public void setEmployeeDepartment(String employeeDepartment) {
+		this.employeeDepartment = employeeDepartment;
+	}
+	public String getEmployeePhone() {
+		return employeePhone;
+	}
+	public void setEmployeePhone(String employeePhone) {
+		this.employeePhone = employeePhone;
+	}
+	public String getEmployeeMail() {
+		return employeeMail;
+	}
+	public void setEmployeeMail(String employeeMail) {
+		this.employeeMail = employeeMail;
 	}
 	
-	public String getContactNo() {
-		return contactNo;
-	}
-	public void setContactNo(String contactNo) {
-		this.contactNo = contactNo;
-	}
-
 }

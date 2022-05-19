@@ -32,13 +32,8 @@ public class TrainingRegistrationServiceImpl implements TrainingRegistrationServ
 	
 	@Override
 	public TrainingRegistration saveOrUpdate(TrainingRegistration trainingRegistration) {
-		try {
-			trainingRegistration.setRegistrationId(trainingRegistration.getRegistrationId());
+
 		return trainingRegistrationRepository.save(trainingRegistration);
-		}catch(Exception ex){
-			throw new TrainingRegisterIdException("TrainingRegistration with id :"+trainingRegistration.getRegistrationId()+" already exist");
-			
-		}
 	}
 	@Override
 	public Optional<TrainingRegistration> findTrainingRegistrationById(Long trainingResgistrationId) {
@@ -72,7 +67,7 @@ public class TrainingRegistrationServiceImpl implements TrainingRegistrationServ
 		         public TrainingRegistration mapRow(ResultSet rs, int row) throws SQLException {
 		        	 TrainingRegistration fullStackEmployees =new TrainingRegistration();
 		        	 fullStackEmployees.setScheduleId(rs.getLong("schedule_id"));
-		        	 fullStackEmployees.setEmployeeId(rs.getLong("employee_id"));
+		        	 fullStackEmployees.setSocialSecurityNo(rs.getLong("social_security_no"));
 		        	 fullStackEmployees.setNominatedFor(rs.getString("nominated_for"));
 		        	 fullStackEmployees.setAllottedBatch(rs.getString("allotted_batch"));				
 						return fullStackEmployees;
@@ -80,5 +75,6 @@ public class TrainingRegistrationServiceImpl implements TrainingRegistrationServ
 						});	
 			
 			}
-
 	}
+
+	

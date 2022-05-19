@@ -1,29 +1,16 @@
 package in.hcl.training_registration.domain;
 
-	import java.util.Date;
+import java.util.Date;
 
-import javax.persistence.Column;
-	import javax.persistence.Entity;
-	import javax.persistence.GeneratedValue;
-	import javax.persistence.GenerationType;
-	import javax.persistence.Id;
-	import javax.validation.constraints.NotBlank;
-	import javax.validation.constraints.Size;
-	@Entity
 	public class Schedule {
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		  private Long scheduleId;
-//		@NotBlank(message = "scheduleId is required")
-//		@Size(max=4,message="Please use 4 characters only")
-//		@Column(updatable = false, unique = true)
-		  private String trainingId;
-		  private Integer totalNumberDays;
-	      private Date StartDtate;
-	      private Date EndDate;
-	      private  Date createdAt;
-		  private Date updatedAt;
-		  
+		
+		private Long scheduleId;
+		private String trainingId;
+		private String trainingName;
+		private Integer totalNumberOfDays;
+		private Date startDate;
+		private Date endDate;
+
 		  
 		public Schedule() {
 			super();
@@ -41,36 +28,39 @@ import javax.persistence.Column;
 		public void setTrainingId(String trainingId) {
 			this.trainingId = trainingId;
 		}
-		public Integer getTotalNumberDays() {
-			return totalNumberDays;
+
+		public String getTrainingName() {
+			return trainingName;
 		}
-		public void setTotalNumberDays(Integer totalNumberDays) {
-			this.totalNumberDays = totalNumberDays;
+
+		public void setTrainingName(String trainingName) {
+			this.trainingName = trainingName;
 		}
-		public Date getStartDtate() {
-			return StartDtate;
+
+		public Integer getTotalNumberOfDays() {
+			return totalNumberOfDays;
 		}
-		public void setStartDtate(Date startDtate) {
-			StartDtate = startDtate;
+
+		public void setTotalNumberOfDays(Integer totalNumberOfDays) {
+			this.totalNumberOfDays = totalNumberOfDays;
 		}
+
+		public Date getStartDate() {
+			return startDate;
+		}
+
+		public void setStartDate(Date startDate) {
+			this.startDate = startDate;
+		}
+
 		public Date getEndDate() {
-			return EndDate;
+			return endDate;
 		}
+
 		public void setEndDate(Date endDate) {
-			EndDate = endDate;
+			this.endDate = endDate;
 		}
-		public Date getCreatedAt() {
-			return createdAt;
-		}
-		public void setCreatedAt(Date createdAt) {
-			this.createdAt = createdAt;
-		}
-		public Date getUpdatedAt() {
-			return updatedAt;
-		}
-		public void setUpdatedAt(Date updatedAt) {
-			this.updatedAt = updatedAt;
-		}
+		
 		
 
 }

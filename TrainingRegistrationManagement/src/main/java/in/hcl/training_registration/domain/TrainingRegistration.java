@@ -1,9 +1,5 @@
 package in.hcl.training_registration.domain;
-
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,17 +8,17 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Transient;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+
 @Entity
 public class TrainingRegistration {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="registration_id")
 	private Long registrationId;
-//  @NotBlank(message = "employeeId is required")
-//	@Size(max=4,message="Please use 4 characters only")
-//	@Column(updatable = false, unique = true)
-    private Long employeeId;
+	@Column(updatable = false, unique = true)
+    private Long socialSecurityNo;
+	@Column(updatable = false, unique = true)
+
 	private Long scheduleId;
 	private String nominatedFor;	
 	private String allottedBatch;
@@ -30,11 +26,26 @@ public class TrainingRegistration {
 	private Date createdAt;
 	private Date updatedAt;
 	
+//	@Transient
+//	List<Employee>employees;
+//	@Transient
+//	List<Schedule>schedule;	
 	@Transient
-	List<Employee>employees;
+	private Employee employee;
 	@Transient
-	List<Schedule>schedule;		
+	private Schedule schedule;
 	
+	
+	public TrainingRegistration() {
+		super();
+	}
+
+	public TrainingRegistration(Long socialSecurityNo, Long scheduleId) {
+		super();
+		this.socialSecurityNo = socialSecurityNo;
+		this.scheduleId = scheduleId;
+	}
+
 	public Long getRegistrationId() {
 		return registrationId;
 	}
@@ -43,12 +54,14 @@ public class TrainingRegistration {
 		this.registrationId = registrationId;
 	}
 
-	public Long getEmployeeId() {
-		return employeeId;
+	
+
+	public Long getSocialSecurityNo() {
+		return socialSecurityNo;
 	}
 
-	public void setEmployeeId(Long employeeId) {
-		this.employeeId = employeeId;
+	public void setSocialSecurityNo(Long socialSecurityNo) {
+		this.socialSecurityNo = socialSecurityNo;
 	}
 
 	public Long getScheduleId() {
@@ -84,22 +97,22 @@ public class TrainingRegistration {
 		this.updatedAt = updatedAt;
 	}
 
-	public List<Employee> getEmployees() {
-		return employees;
+	
+	public Employee getEmployee() {
+		return employee;
 	}
 
-	public void setEmployees(List<Employee> employees) {
-		this.employees = employees;
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 
-	public List<Schedule> getSchedule() {
+	public Schedule getSchedule() {
 		return schedule;
 	}
 
-	public void setSchedule(List<Schedule> schedule) {
+	public void setSchedule(Schedule schedule) {
 		this.schedule = schedule;
 	}
-	
 
 	public String getAllottedBatch() {
 		return allottedBatch;
