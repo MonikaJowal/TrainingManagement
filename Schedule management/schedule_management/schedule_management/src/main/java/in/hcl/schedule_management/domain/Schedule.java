@@ -6,8 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -16,57 +14,61 @@ public class Schedule {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long employeeId;
-	private String employeeName;
-	private String programeName;
+	private Long scheduleId;
+	private String trainingId;
+	private String trainingName;
+	private Integer totalNumberOfDays;
 	@JsonFormat(pattern = "yyyy-mm-dd")
 	private Date startDate;
 	@JsonFormat(pattern = "yyyy-mm-dd")
 	private Date endDate;
-	@JsonFormat(pattern = "yyyy-mm-dd")
-	private Date createdAt;
-	@JsonFormat(pattern = "yyyy-mm-dd")
-	private Date updatedAt;
 
 	public Schedule() {
 		super();
-        // TODO Auto-generated constructor stub
+		// TODO Auto-generated constructor stub
 	}
 
-	public Schedule(Long employeeId, String employeeName, String programeName, Date startDate, Date endDate,
-			Date createdAt, Date updatedAt) {
+	public Schedule(Long scheduleId, String trainingId, String trainingName, Integer totalNumberOfDays, Date startDate,
+			Date endDate) {
 		super();
-		this.employeeId = employeeId;
-		this.employeeName = employeeName;
-		this.programeName = programeName;
+		this.scheduleId = scheduleId;
+		this.trainingId = trainingId;
+		this.trainingName = trainingName;
+		this.totalNumberOfDays = totalNumberOfDays;
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
 	}
 
-	public Long getEmployeeId() {
-		return employeeId;
+	public Long getScheduleId() {
+		return scheduleId;
 	}
 
-	public void setEmployeeId(Long employeeId) {
-		this.employeeId = employeeId;
+	public void setScheduleId(Long scheduleId) {
+		this.scheduleId = scheduleId;
 	}
 
-	public String getEmployeeName() {
-		return employeeName;
+	public String getTrainingId() {
+		return trainingId;
 	}
 
-	public void setEmployeeName(String employeeName) {
-		this.employeeName = employeeName;
+	public void setTrainingId(String trainingId) {
+		this.trainingId = trainingId;
 	}
 
-	public String getProgrameName() {
-		return programeName;
+	public String getTrainingName() {
+		return trainingName;
 	}
 
-	public void setProgrameName(String programeName) {
-		this.programeName = programeName;
+	public void setTrainingName(String trainingName) {
+		this.trainingName = trainingName;
+	}
+
+	public Integer getTotalNumberOfDays() {
+		return totalNumberOfDays;
+	}
+
+	public void setTotalNumberOfDays(Integer totalNumberOfDays) {
+		this.totalNumberOfDays = totalNumberOfDays;
 	}
 
 	public Date getStartDate() {
@@ -84,37 +86,8 @@ public class Schedule {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-
-	@PrePersist
-	public void onCreate() {
-		this.createdAt = new Date();
-	}
-
-	@PreUpdate
-	public void onUpdate() {
-		this.updatedAt = new Date();
-	}
+	
 
 }
 
-
-
-
-
-
+	

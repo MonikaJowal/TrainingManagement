@@ -1,55 +1,75 @@
 package in.hcl.training_registration.domain;
-
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.Transient;
+
 @Entity
 public class TrainingRegistration {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	@NotBlank(message = "employeeId is required")
-	@Size(max=4,message="Please use 4 characters only")
+	@Column(name="registration_id")
+	private Long registrationId;
 	@Column(updatable = false, unique = true)
-	private String employeeId;
-	@NotBlank(message = "employeeName is required")
-	private String employeeName;
-	@NotBlank(message = "nominatedFor is required")
+    private Long socialSecurityNo;
+	@Column(updatable = false, unique = true)
+
+	private Long scheduleId;
 	private String nominatedFor;	
 	private String allottedBatch;
-	private String startDate;
-	private String endDate;
+	
+	private Date createdAt;
+	private Date updatedAt;
+	
+//	@Transient
+//	List<Employee>employees;
+//	@Transient
+//	List<Schedule>schedule;	
+	@Transient
+	private Employee employee;
+	@Transient
+	private Schedule schedule;
+	
 	
 	public TrainingRegistration() {
 		super();
 	}
 
-	public Long getId() {
-		return id;
+	public TrainingRegistration(Long socialSecurityNo, Long scheduleId) {
+		super();
+		this.socialSecurityNo = socialSecurityNo;
+		this.scheduleId = scheduleId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public Long getRegistrationId() {
+		return registrationId;
 	}
 
-	public String getEmployeeId() {
-		return employeeId;
+	public void setRegistrationId(Long registrationId) {
+		this.registrationId = registrationId;
 	}
 
-	public void setEmployeeId(String employeeId) {
-		this.employeeId = employeeId;
+	
+
+	public Long getSocialSecurityNo() {
+		return socialSecurityNo;
 	}
 
-	public String getEmployeeName() {
-		return employeeName;
+	public void setSocialSecurityNo(Long socialSecurityNo) {
+		this.socialSecurityNo = socialSecurityNo;
 	}
 
-	public void setEmployeeName(String employeeName) {
-		this.employeeName = employeeName;
+	public Long getScheduleId() {
+		return scheduleId;
+	}
+
+	public void setScheduleId(Long scheduleId) {
+		this.scheduleId = scheduleId;
 	}
 
 	public String getNominatedFor() {
@@ -60,6 +80,40 @@ public class TrainingRegistration {
 		this.nominatedFor = nominatedFor;
 	}
 
+	
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+	
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	public Schedule getSchedule() {
+		return schedule;
+	}
+
+	public void setSchedule(Schedule schedule) {
+		this.schedule = schedule;
+	}
+
 	public String getAllottedBatch() {
 		return allottedBatch;
 	}
@@ -68,22 +122,19 @@ public class TrainingRegistration {
 		this.allottedBatch = allottedBatch;
 	}
 
-	public String getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(String startDate) {
-		this.startDate = startDate;
-	}
-
-	public String getEndDate() {
-		return endDate;
-	}
-
-	public void setEndDate(String endDate) {
-		this.endDate = endDate;
+	@PrePersist
+	public void onCreate() {
+		this.createdAt = new Date();
+		
 	}
 	
+	@PreUpdate
+	public void onUpdate() {
+		this.updatedAt = new Date();
+	}
+
+
+
 	
 
 }
