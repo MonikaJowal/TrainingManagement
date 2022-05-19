@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import in.hcl.schedule_management.domain.Schedule;
 import in.hcl.schedule_management.service.ScheduleService;
+import in.hcl.schedule_management.serviceimpl.MapValidationErrorService;
 
 @RestController
 @RequestMapping("/schedule")
@@ -26,9 +28,12 @@ public class ScheduleController {
 
 	@Autowired
 	private ScheduleService scheduleService;
+	
+	@Autowired
+	private RestTemplate restTemplate;
 
 	@Autowired
-	private in.hcl.schedule_management.serviceimpl.MapValidationErrorService mapValidationErrorService;
+	private MapValidationErrorService mapValidationErrorService;
 
 	@PostMapping("/createSchedule")
 	public ResponseEntity<?> createNewSchedule(@Valid @RequestBody Schedule schedule, BindingResult result) {
@@ -41,6 +46,7 @@ public class ScheduleController {
 
 	@GetMapping("/getSchedule/{scheduleId}")
 	public Schedule getScheduleById(@PathVariable("scheduleId") Long scheduleId) {
+	//	Schedule schedule = scheduleService.getScheduleById(scheduleId);
 		return scheduleService.getScheduleById(scheduleId);
 	}
 
@@ -59,6 +65,7 @@ public class ScheduleController {
 		scheduleService.deleteScheduleById(scheduleId);
 	}
 }
+
 
 
 

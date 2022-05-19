@@ -22,6 +22,10 @@ public class Schedule {
 	private Date startDate;
 	@JsonFormat(pattern = "yyyy-mm-dd")
 	private Date endDate;
+	
+	
+	
+	
 
 	public Schedule() {
 		super();
